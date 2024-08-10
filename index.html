@@ -1,34 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>2nd task, The car collector</title>
     <style>
-        .test2 {
-            display: flex;
+        .car-container {
+            position: relative;
+            width: 800px; 
+            height: 400px; 
+            margin: 0 auto;
+            
         }
-        .test2 img {
+        .car-parts img {
             width: 250px;
             height: 237px;
             cursor: pointer;
+            position: absolute;
         }
-        
+        #img1 { top: 50px; left: 50px; } 
+        #img2 { top: 50px; left: 300px; } 
+        #img3 { top: 50px; left: 550px; } 
+        #img4 { top: 180px; left: 157px; width: 135px;height: 113px;}
+        #img5 { top: 187px; left: 590px; width: 130px;height: 107px;} 
     </style>
-  </head>
-  <body>
-<noscript> JS not working</noscript>
+</head>
+<body>
+<noscript>JS not working</noscript>
 <div id="text1" style="display:flex;">Collect the car</div>
+<div data-layout="SMALL_ICON_COUNTER" class="ec-cart-widget"></div>
+<div><script data-cfasync="false" type="text/javascript"
+src="https://app.ecwid.com/script.js?107292537&data_platform=code&data_date=2024-08-09" 
+charset="utf-8"></script><script>Ecwid.init();</script></div>
 
-<div class="test2">
-    <img onclick="pickItem1(this);" src="resources/image_part_001.jpg" id="img1" alt="image 1"/> 
-    <img onclick="pickItem2(this);" src="resources/image_part_002.jpg" id="img2" alt="image 2"/>
-    <img onclick="pickItem3(this);" src="resources/image_part_003.jpg" id="img3" alt="image 3"/>
+<div class="car-container" id="car-container">
+    <div class="car-parts">
+        <img onclick="pickItem1(this);" src="resources/image_part_001.jpg" id="img1" alt="image 1"/> 
+        <img onclick="pickItem2(this);" src="resources/image_part_002.jpg" id="img2" alt="image 2"/>
+        <img onclick="pickItem3(this);" src="resources/image_part_003.jpg" id="img3" alt="image 3"/>
+        <img onclick="pickItem4(this);" src="resources/image_part_004.jpg" id="img4" alt="image 4"/> 
+        <img onclick="pickItem5(this);" src="resources/image_part_005.jpg" id="img5" alt="image 5"/> 
+    </div>
 </div>
 
-<script src="js/main.js">
 
+
+<script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?107292537&data_platform=code&data_date=2024-08-09" charset="utf-8"></script>
+<script type="text/javascript"> Ecwid.init();
+
+
+function pickItem1(image) {
+  
+  if (image.src.includes('image_part_001.jpg')) {
+      image.src = 'resources/image_part_001_pressed.jpg';
+      Ecwid.Cart.addProduct(687578637);
+  } else if (image.src.includes('image_part_001_pressed.jpg')) {
+      image.src = 'resources/image_part_001.jpg';
+      Ecwid.Cart.removeProduct(687578637);
+    }
+
+    checkAllPressed();
+}
+
+function pickItem2(image) {
+  
+  if (image.src.includes('image_part_002.jpg')) {
+      image.src = 'resources/image_part_002_pressed.jpg';
+      Ecwid.Cart.addProduct(687584762);
+  } else if (image.src.includes('image_part_002_pressed.jpg')) {
+      image.src = 'resources/image_part_002.jpg';
+      Ecwid.Cart.removeProduct(687584762);
+  }
+
+  checkAllPressed();
+}
+
+function pickItem3(image) {
+  
+  if (image.src.includes('image_part_003.jpg')) {
+      image.src = 'resources/image_part_003_pressed.jpg';
+      Ecwid.Cart.addProduct(687582791);
+  } else if (image.src.includes('image_part_003_pressed.jpg')) {
+      image.src = 'resources/image_part_003.jpg';
+      Ecwid.Cart.removeProduct(687582791);
+    }
+
+    checkAllPressed();
+}
+
+function pickItem4(image) {
+  
+  if (image.src.includes('image_part_004.jpg')) {
+      image.src = 'resources/image_part_004_pressed.jpg';
+      Ecwid.Cart.addProduct(687600439);
+  } else if (image.src.includes('image_part_004_pressed.jpg')) {
+      image.src = 'resources/image_part_004.jpg';
+      Ecwid.Cart.removeProduct(687600439);
+    }
+
+    checkAllPressed();
+}
+
+function pickItem5(image) {
+  
+  if (image.src.includes('image_part_005.jpg')) {
+      image.src = 'resources/image_part_005_pressed.jpg';
+      Ecwid.Cart.addProduct(687621787);
+  } else if (image.src.includes('image_part_005_pressed.jpg')) {
+      image.src = 'resources/image_part_005.jpg';
+      Ecwid.Cart.removeProduct(687621787);
+    }
+
+    checkAllPressed();
+}
+
+function checkAllPressed() {
+  let img1 = document.getElementById('img1').src.includes('image_part_001_pressed.jpg');
+  let img2 = document.getElementById('img2').src.includes('image_part_002_pressed.jpg');
+  let img3 = document.getElementById('img3').src.includes('image_part_003_pressed.jpg');
+  let img4 = document.getElementById('img4').src.includes('image_part_004_pressed.jpg');
+  let img5 = document.getElementById('img5').src.includes('image_part_005_pressed.jpg');
+  if(img1&&img2&&img3&&img4&&img5){
+    if (img1 && img2 && img3&&img4&&img5) {
+      document.getElementById('text1').innerText = 'вы собрали автомобиль!';
+      document.getElementById('car-container').style.display = 'none';
+      
+    } else {
+      document.getElementById('text1').innerText = 'соберите автомобиль!';
+    }
+  } else{
+    document.getElementById('text1').innerText = 'соберите автомобиль!';
+  }
+}
+
+
+
+
+function addProduct(productId) {
+            Ecwid.Cart.get(function(cart) {
+                if (cart.items.length === 0) {Ecwid.Cart.addProduct(productId, function(success, product, cart){});}
+        });
+        }
 </script>
 </body>
 </html>
