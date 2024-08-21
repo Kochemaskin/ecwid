@@ -50,78 +50,61 @@ charset="utf-8"></script><script>Ecwid.init();</script></div>
 <script type="text/javascript"> Ecwid.init();
 
 
-let uniqueProductIds = [];
 
 function pickItem1(image) {
   if (image.src.includes('image_part_001.jpg')) {
     image.src = 'resources/image_part_001_pressed.jpg';
-    addUniqueProduct(687578637);
+    Ecwid.Cart.addProduct(687578637);
   } else if (image.src.includes('image_part_001_pressed.jpg')) {
     image.src = 'resources/image_part_001.jpg';
   }
-
-  checkAllPressed();
 }
 
 function pickItem2(image) {
   if (image.src.includes('image_part_002.jpg')) {
     image.src = 'resources/image_part_002_pressed.jpg';
-    addUniqueProduct(687584762);
+    Ecwid.Cart.addProduct(687584762);
   } else if (image.src.includes('image_part_002_pressed.jpg')) {
     image.src = 'resources/image_part_002.jpg';
   }
-
-  checkAllPressed();
 }
 
 function pickItem3(image) {
   if (image.src.includes('image_part_003.jpg')) {
     image.src = 'resources/image_part_003_pressed.jpg';
-    addUniqueProduct(687582791);
+    Ecwid.Cart.addProduct(687582791);
   } else if (image.src.includes('image_part_003_pressed.jpg')) {
     image.src = 'resources/image_part_003.jpg';
   }
-
-  checkAllPressed();
 }
 
 function pickItem4(image) {
   if (image.src.includes('image_part_004.jpg')) {
     image.src = 'resources/image_part_004_pressed.jpg';
-    addUniqueProduct(687600439);
+    Ecwid.Cart.addProduct(687600439);
   } else if (image.src.includes('image_part_004_pressed.jpg')) {
     image.src = 'resources/image_part_004.jpg';
   }
-
-  checkAllPressed();
 }
 
 function pickItem5(image) {
   if (image.src.includes('image_part_005.jpg')) {
     image.src = 'resources/image_part_005_pressed.jpg';
-    addUniqueProduct(687621787);
+    Ecwid.Cart.addProduct(687621787);
   } else if (image.src.includes('image_part_005_pressed.jpg')) {
     image.src = 'resources/image_part_005.jpg';
   }
-
-  checkAllPressed();
 }
 
-function addUniqueProduct(productId) {
-  if (!uniqueProductIds.includes(productId)) {
-    uniqueProductIds.push(productId);
-    Ecwid.Cart.addProduct(productId);
-  }
-}
-function checkAllPressed() {
-
-  if ( uniqueProductIds.length >= 5) {
-    document.getElementById('text1').innerText = 'вы собрали автомобиль!';
-    document.getElementById('car-container').style.display = 'none';
-  } else {
-    document.getElementById('text1').innerText = 'соберите автомобиль!';
-  }
-}
+Ecwid.OnCartChanged.add(function(cart){
+            if (cart.items.length >= 5) {
+              document.getElementById('car-container').style.display = 'none';
+              document.getElementById('text1').innerText = 'вы собрали автомобиль!';
+            }
+            else{
+              document.getElementById('text1').innerText = 'соберите автомобиль!';
+            }
+        });
 
 </script>
 </body>
